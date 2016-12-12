@@ -13,6 +13,11 @@ unless os.windows?
 end
 
 describe port(80) do
-  it { should_not be_listening }
-  skip 'This is an example test, replace with your own test.'
+  it { should be_listening }
+  skip 'This is the webserver port test.'
+end
+
+describe file('/var/www/html/index.html') do
+  its('content') { should match /\<h1\>Hello, World\<\/h1\>/ }
+  skip 'This is the index.html test.'
 end
