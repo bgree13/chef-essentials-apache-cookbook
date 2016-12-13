@@ -8,16 +8,21 @@
 unless os.windows?
   describe user('root') do
     it { should exist }
-    skip 'This is an example test, replace with your own test.'
+    #skip 'This is an example test, replace with your own test.'
   end
 end
 
 describe port(80) do
   it { should be_listening }
-  skip 'This is the webserver port test.'
+  #skip 'This is the webserver port test.'
 end
 
 describe file('/var/www/html/index.html') do
   its('content') { should match /\<h1\>Hello, World\<\/h1\>/ }
-  skip 'This is the index.html test.'
+  #skip 'This is the index.html test.'
+end
+
+describe file('/var/www/html/index.html') do
+  it { should be_readable.by_user('apache') }
+  it { should be_writable }
 end
